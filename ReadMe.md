@@ -1,7 +1,9 @@
 <a name="readme-top" id="readme-top"></a>
-# XXX SaaS Vanilla MVC YYYY SN
+# MA SaaS Vanilla MVC 2025 S1
 
 Base Code for a Vanilla PHP Micro-MVC Framework.
+Develop a simple jokes system using a PHP & SQL micro-framework. The system will allow users to register, log in, and manage jokes. 
+Users will be able to add, edit, and delete jokes and update their own details. Additionally, the system will support optional category management.
 
 Used by students at North Metropolitan TAFE for learning and assessment purposes.
 
@@ -27,7 +29,7 @@ Used by students at North Metropolitan TAFE for learning and assessment purposes
 |---------------------|-------------------------------------------------------------------------------------------------------------|
 | BREAD               | Database operations to Browse, Read, Edit, Add and Delete data                                              |
 | CRUD                | More commonly used term over BREAD. Create (Add), Retrieve (Browse/Read), Update (Edit) and Delete (Delete) |
-| Relational Database | ...                                                                                                         |
+| Relational Database | Organises data into tables that are connected to each other, making it easy to manage and find information  |
 | One to One          | ...                                                                                                         |
 | One to Many         | ...                                                                                                         |
 | Many to Many        | ...                                                                                                         |
