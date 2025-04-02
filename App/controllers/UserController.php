@@ -7,14 +7,14 @@
  *
  * Filename:        UserController.php
  * Location:        App/Controllers
- * Project:         SaaS-Vanilla-MVC
- * Date Created:    20/08/2024
+ * Project:         ma-php-mvc-jokes-2025-s1
+ * Date Created:    02/04/2025
  *
- * Author:          Adrian Gould <Adrian.Gould@nmtafe.wa.edu.au>
+ * Author:          Martina Ait <20114816@tafe.wa.edu.au>
  *
  */
 
-namespace App\Controllers;
+namespace App\controllers;
 
 use Framework\Database;
 use Framework\Session;
@@ -72,10 +72,13 @@ class UserController
      */
     public function store()
     {
-        $name = $_POST['name'] ?? null;
+        $givenName = $_POST['given_name'] ?? null;
+        $familyName = $_POST['family_name'] ?? null;  // Family name is optional
+        $nickname = $_POST['nickname'] ?? null;
         $email = $_POST['email'] ?? null;
-        $city = $_POST['city'] ?? null;
-        $state = $_POST['state'] ?? null;
+        $city = $_POST['city'] ?? 'Unknown';  // Default to 'Unknown'
+        $state = $_POST['state'] ?? 'Unknown';  // Default to 'Unknown'
+        $country = $_POST['country'] ?? 'Unknown';  // Default to 'Unknown'
         $password = $_POST['password'] ?? null;
         $passwordConfirmation = $_POST['password_confirmation'] ?? null;
 
@@ -86,8 +89,8 @@ class UserController
             $errors['email'] = 'Please enter a valid email address';
         }
 
-        if (!Validation::string($name, 2, 50)) {
-            $errors['name'] = 'Name must be between 2 and 50 characters';
+        if (!Validation::string($givenName, 2, 50)) {
+            $errors['name'] = 'Given name must be between 2 and 50 characters';
         }
 
         if (!Validation::string($password, 6, 50)) {
@@ -98,14 +101,22 @@ class UserController
             $errors['password_confirmation'] = 'Passwords do not match';
         }
 
+        // Set nickname to given name if not provided
+        if (empty($nickname)) {
+            $nickname = $givenName;
+        }
+
         if (!empty($errors)) {
             loadView('users/create', [
                 'errors' => $errors,
                 'user' => [
-                    'name' => $name,
+                    'given_name' => $givenName,
+                    'family_name' => $familyName,
+                    'nickname' => $nickname,
                     'email' => $email,
                     'city' => $city,
                     'state' => $state,
+                    'country' => $country
                 ]
             ]);
             exit;
@@ -128,14 +139,14 @@ class UserController
 
         // Create user account
         $params = [
-            'name' => $name,
+            'name' => $givenName,
             'email' => $email,
             'city' => $city,
             'state' => $state,
             'password' => password_hash($password, PASSWORD_DEFAULT)
         ];
 
-        $this->db->query('INSERT INTO users (name, email, city, state, password) VALUES (:name, :email, :city, :state, :password)', $params);
+        $this->db->query('INSERT INTO users (given_name, family_name, nickname, email, city, state, country, password) VALUES (:given_name, :family_name, :nickname, :email, :city, :state, :country, :password)', $params);
 
         // Get new user ID
         $userId = $this->db->conn->lastInsertId();
@@ -143,10 +154,11 @@ class UserController
         // Set user session
         Session::set('user', [
             'id' => $userId,
-            'name' => $name,
+            'nickname' => $nickname,
             'email' => $email,
             'city' => $city,
-            'state' => $state
+            'state' => $state,
+            'country' => $country
         ]);
 
         redirect('/');
@@ -223,12 +235,86 @@ class UserController
         // Set user session
         Session::set('user', [
             'id' => $user->id,
-            'name' => $user->name,
+            'nickname' => $user->nickname,
+            'given_name' => $user->given_name,
+            'family_name' => $user->family_name,
             'email' => $user->email,
             'city' => $user->city,
-            'state' => $user->state
+            'state' => $user->state,
+            'country' => $user->country
         ]);
 
         redirect('/');
     }
+
+    public function update()
+    {
+        // Check if the user is authenticated
+        $userId = Session::get('user')['id'] ?? null;
+        if (!$userId) {
+            redirect('/login');
+            exit;
+        }
+
+        // Get user data from POST
+        $givenName = $_POST['given_name'] ?? null;
+        $familyName = $_POST['family_name'] ?? null;
+        $nickname = $_POST['nickname'] ?? null;
+        $city = $_POST['city'] ?? 'Unknown';  // Default to 'Unknown'
+        $state = $_POST['state'] ?? 'Unknown';  // Default to 'Unknown'
+        $country = $_POST['country'] ?? 'Unknown';  // Default to 'Unknown'
+
+        $errors = [];
+
+        // Validation
+        if (!Validation::string($givenName, 2, 50)) {
+            $errors['given_name'] = 'Given name must be between 2 and 50 characters';
+        }
+
+        // Set nickname to given name if not provided
+        if (empty($nickname)) {
+            $nickname = $givenName;
+        }
+
+        if (!empty($errors)) {
+            loadView('users/edit', [
+                'errors' => $errors,
+                'user' => [
+                    'given_name' => $givenName,
+                    'family_name' => $familyName,
+                    'nickname' => $nickname,
+                    'city' => $city,
+                    'state' => $state,
+                    'country' => $country
+                ]
+            ]);
+            exit;
+        }
+
+        // Update user in the database
+        $params = [
+            'given_name' => $givenName,
+            'family_name' => $familyName,
+            'nickname' => $nickname,
+            'city' => $city,
+            'state' => $state,
+            'country' => $country,
+            'user_id' => $userId
+        ];
+
+        $this->db->query('UPDATE users SET given_name = :given_name, family_name = :family_name, nickname = :nickname, city = :city, state = :state, country = :country, updated_at = CURRENT_TIMESTAMP WHERE id = :user_id', $params);
+
+        // Update session
+        Session::set('user', [
+            'id' => $userId,
+            'nickname' => $nickname,
+            'city' => $city,
+            'state' => $state,
+            'country' => $country
+        ]);
+
+        redirect('/profile');
+    }
+
 }
+

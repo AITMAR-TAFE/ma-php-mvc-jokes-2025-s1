@@ -13,7 +13,7 @@
 return [
     'host' => '127.0.0.1',
     'port' => 3306,
-    'dbname' => 'XXX_SaaS_FED_YYYY_SN',
-    'username' => 'XXX_SaaS_FED_YYYY_SN',
+    'dbname' => 'MA_Php_MVC_jokes_2025_S1',
+    'username' => 'MA_Php_MVC_jokes_2025_S1',
     'password' => 'Password1234'
 ];

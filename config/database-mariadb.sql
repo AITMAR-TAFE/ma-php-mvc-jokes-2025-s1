@@ -30,9 +30,9 @@
 -- --------------------------------------------------------------------------------------------
 -- Clean up existing database and user(s)
 -- --------------------------------------------------------------------------------------------
-DROP DATABASE IF EXISTS MA_SaaS_FED_2025_S1;
-DROP USER IF EXISTS 'MA_SaaS_FED_2025_S1'@'localhost';
-DROP USER IF EXISTS 'MA_SaaS_FED_2025_S1'@'127.0.0.1';
+DROP DATABASE IF EXISTS MA_Php_MVC_jokes_2025_S1;
+DROP USER IF EXISTS 'MA_Php_MVC_jokes_2025_S1'@'localhost';
+DROP USER IF EXISTS 'MA_Php_MVC_jokes_2025_S1'@'127.0.0.1';
 -- ====================================> END SECTION <=========================================
 
 
@@ -46,36 +46,36 @@ DROP USER IF EXISTS 'MA_SaaS_FED_2025_S1'@'127.0.0.1';
 -- --------------------------------------------------------------------------------------------
 
 -- --------------------------------------------------------------------------------------------
--- Create Database named 'MA_SaaS_FED_2025_S1'
+-- Create Database named 'MA_Php_MVC_jokes_2025_S1'
 -- --------------------------------------------------------------------------------------------
-CREATE DATABASE IF NOT EXISTS MA_SaaS_FED_2025_S1;
+CREATE DATABASE IF NOT EXISTS MA_Php_MVC_jokes_2025_S1;
 
 -- --------------------------------------------------------------------------------------------
 -- Create User & Grant Permissions
 -- We create users that are able to access the database via localhost and 127.0.0.1  just in
 -- case IPv6 is detected. Some RDBMS systems may not be 100% compatible with IPv6 IP addresses.
 -- --------------------------------------------------------------------------------------------
-CREATE USER 'MA_SaaS_FED_2025_S1'@'localhost'
+CREATE USER 'MA_Php_MVC_jokes_2025_S1'@'localhost'
     IDENTIFIED WITH mysql_native_password
         USING PASSWORD('Password1234');
 
-CREATE USER 'MA_SaaS_FED_2025_S1'@'127.0.0.1'
+CREATE USER 'MA_Php_MVC_jokes_2025_S1'@'127.0.0.1'
     IDENTIFIED WITH mysql_native_password
         USING PASSWORD('Password1234');
 
 GRANT USAGE ON *.*
-    TO 'MA_SaaS_FED_2025_S1'@'localhost';
+    TO 'MA_Php_MVC_jokes_2025_S1'@'localhost';
 
 GRANT USAGE ON *.*
-    TO 'MA_SaaS_FED_2025_S1'@'127.0.0.1';
+    TO 'MA_Php_MVC_jokes_2025_S1'@'127.0.0.1';
 
 GRANT ALL PRIVILEGES
-    ON `MA_SaaS_FED_2025_S1`.*
-    TO 'MA_SaaS_FED_2025_S1'@'localhost';
+    ON `MA_Php_MVC_jokes_2025_S1`.*
+    TO 'MA_Php_MVC_jokes_2025_S1'@'localhost';
 
 GRANT ALL PRIVILEGES
-    ON `MA_SaaS_FED_2025_S1`.*
-    TO 'MA_SaaS_FED_2025_S1'@'127.0.0.1';
+    ON `MA_Php_MVC_jokes_2025_S1`.*
+    TO 'MA_Php_MVC_jokes_2025_S1'@'127.0.0.1';
 
 -- --------------------------------------------------------------------------------------------
 -- Apply the user's privileges.
@@ -94,19 +94,19 @@ FLUSH PRIVILEGES;
 -- --------------------------------------------------------------------------------------------
 
 -- --------------------------------------------------------------------------------------------
--- Tell MySQL to use the MA_SaaS_FED_2025_S1 database for commands.
+-- Tell MySQL to use the MA_Php_MVC_jokes_2025_S1 database for commands.
 -- --------------------------------------------------------------------------------------------
-USE MA_SaaS_FED_2025_S1;
+USE MA_Php_MVC_jokes_2025_S1;
 
 -- --------------------------------------------------------------------------------------------
 -- Remove any existing Users table
 -- --------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS `MA_SaaS_FED_2025_S1`.`users`;
+DROP TABLE IF EXISTS `MA_Php_MVC_jokes_2025_S1`.`users`;
 
 -- --------------------------------------------------------------------------------------------
 -- Create the table structure for the 'users' table
 -- --------------------------------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS `MA_SaaS_FED_2025_S1`.`users`
+CREATE TABLE IF NOT EXISTS `MA_Php_MVC_jokes_2025_S1`.`users`
 (
     `id`         int          NOT NULL AUTO_INCREMENT,
     `given_name` varchar(128) NOT NULL,
@@ -137,19 +137,19 @@ CREATE TABLE IF NOT EXISTS `MA_SaaS_FED_2025_S1`.`users`
 -- --------------------------------------------------------------------------------------------
 
 -- --------------------------------------------------------------------------------------------
--- Tell MySQL to use the MA_SaaS_FED_2025_S1 database for commands.
+-- Tell MySQL to use the MA_Php_MVC_jokes_2025_S1 database for commands.
 -- --------------------------------------------------------------------------------------------
-USE MA_SaaS_FED_2025_S1;
+USE MA_Php_MVC_jokes_2025_S1;
 
 -- --------------------------------------------------------------------------------------------
 -- Remove any existing Products table
 -- --------------------------------------------------------------------------------------------
-# DROP TABLE IF EXISTS `MA_SaaS_FED_2025_S1`.`products`;
+# DROP TABLE IF EXISTS `MA_Php_MVC_jokes_2025_S1`.`products`;
 
 -- --------------------------------------------------------------------------------------------
 -- Create the Products table structure
 -- --------------------------------------------------------------------------------------------
-# CREATE TABLE IF NOT EXISTS `MA_SaaS_FED_2025_S1`.`products`
+# CREATE TABLE IF NOT EXISTS `MA_Php_MVC_jokes_2025_S1`.`products`
 # (
 #     `id`          bigint unsigned NOT NULL AUTO_INCREMENT,
 #     `user_id`     bigint unsigned          DEFAULT 10,
@@ -166,14 +166,14 @@ USE MA_SaaS_FED_2025_S1;
 #     COLLATE = utf8mb4_general_ci;
 
 -- --------------------------------------------------------------------------------------------
--- Tell MySQL to use the MA_SaaS_FED_2025_S1 database for commands.
+-- Tell MySQL to use the MA_Php_MVC_jokes_2025_S1 database for commands.
 -- --------------------------------------------------------------------------------------------
-USE MA_SaaS_FED_2025_S1;
+USE MA_Php_MVC_jokes_2025_S1;
 
 -- --------------------------------------------------------------------------------------------
 -- Remove any existing Categories table
 -- --------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS `MA_SaaS_FED_2025_S1`.`categories`;
+DROP TABLE IF EXISTS `MA_Php_MVC_jokes_2025_S1`.`categories`;
 
 -- --------------------------------------------------------------------------------------------
 -- Create the Categories table structure
@@ -194,14 +194,14 @@ CREATE TABLE `ma_php_mvc_jokes_2025_s1`.`categories`
   COLLATE utf8mb4_general_ci;
 
 -- --------------------------------------------------------------------------------------------
--- Tell MySQL to use the MA_SaaS_FED_2025_S1 database for commands.
+-- Tell MySQL to use the MA_Php_MVC_jokes_2025_S1 database for commands.
 -- --------------------------------------------------------------------------------------------
-USE MA_SaaS_FED_2025_S1;
+USE MA_Php_MVC_jokes_2025_S1;
 
 -- --------------------------------------------------------------------------------------------
 -- Remove any existing Jokes table
 -- --------------------------------------------------------------------------------------------
-DROP TABLE IF EXISTS `MA_SaaS_FED_2025_S1`.`jokes`;
+DROP TABLE IF EXISTS `MA_Php_MVC_jokes_2025_S1`.`jokes`;
 
 -- --------------------------------------------------------------------------------------------
 -- Create the Jokes table structure
@@ -241,20 +241,20 @@ CREATE TABLE `ma_php_mvc_jokes_2025_s1`.`jokes`
 -- --------------------------------------------------------------------------------------------
 
 -- --------------------------------------------------------------------------------------------
--- Tell MySQL to use the MA_SaaS_FED_2025_S1 database for commands.
+-- Tell MySQL to use the MA_Php_MVC_jokes_2025_S1 database for commands.
 -- --------------------------------------------------------------------------------------------
-USE MA_SaaS_FED_2025_S1;
+USE MA_Php_MVC_jokes_2025_S1;
 
 -- --------------------------------------------------------------------------------------------
 -- Seed Users Table
 -- The Password is Password1 hashed using the PHP password_hash() method.
 -- --------------------------------------------------------------------------------------------
-INSERT INTO `MA_SaaS_FED_2025_S1`.`users`
+INSERT INTO `MA_Php_MVC_jokes_2025_S1`.`users`
 VALUES (10, 'Ad','Ministrator','Administrator', 'admin@example.com',
         '$2y$10$4Ae3n2iQ0MwXMNz0UEmNne2PaNyfYsBFYb97nayHWTDCwpnuPi6f.',
         'Perth', 'WA', 'Australia', '2000-01-01 00:00:01', null);
 
-INSERT INTO `MA_SaaS_FED_2025_S1`.`users`
+INSERT INTO `MA_Php_MVC_jokes_2025_S1`.`users`
 VALUES (20, 'Adrian', 'Gould','Ady', 'adrian@example.com',
         '$2y$10$4Ae3n2iQ0MwXMNz0UEmNne2PaNyfYsBFYb97nayHWTDCwpnuPi6f.',
         'Perth', 'WA', 'Australia', '2024-01-01 10:30:01', null),
@@ -262,7 +262,7 @@ VALUES (20, 'Adrian', 'Gould','Ady', 'adrian@example.com',
         '$2y$10$4Ae3n2iQ0MwXMNz0UEmNne2PaNyfYsBFYb97nayHWTDCwpnuPi6f.',
         'Perth', 'WA', 'Australia', '2024-08-10 16:11:43',null);
 
-INSERT INTO `MA_SaaS_FED_2025_S1`.`users`
+INSERT INTO `MA_Php_MVC_jokes_2025_S1`.`users`
 VALUES (100, 'John', 'Doe','JD', 'user1@example.com',
         '$2y$10$4Ae3n2iQ0MwXMNz0UEmNne2PaNyfYsBFYb97nayHWTDCwpnuPi6f.',
         'Bunbury', 'WA', 'Australia', '2024-08-15 13:04:21', null),
@@ -284,7 +284,7 @@ VALUES (100, 'John', 'Doe','JD', 'user1@example.com',
 -- --------------------------------------------------------------------------------------------
 -- Seed Products Table
 -- --------------------------------------------------------------------------------------------
-# INSERT INTO `MA_SaaS_FED_2025_S1`.`products`(`id`, `user_id`, `name`, `description`, `price`, `created_at`)
+# INSERT INTO `MA_Php_MVC_jokes_2025_S1`.`products`(`id`, `user_id`, `name`, `description`, `price`, `created_at`)
 # VALUES (40380, 20, 'Sheep BrickHeadz',
 #         'BrickHeadz theme: This set features an adorable sheep with a cute, blocky design, perfect for collectors and fans of the BrickHeadz series.',
 #         1999, '2020-01-01'),
