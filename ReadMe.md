@@ -25,17 +25,17 @@ Used by students at North Metropolitan TAFE for learning and assessment purposes
 
 ## Definitions
 
-| Term                | Definition                                                                                                  |
-|---------------------|-------------------------------------------------------------------------------------------------------------|
-| BREAD               | Database operations to Browse, Read, Edit, Add and Delete data                                              |
-| CRUD                | More commonly used term over BREAD. Create (Add), Retrieve (Browse/Read), Update (Edit) and Delete (Delete) |
-| Relational Database | Organises data into tables that are connected to each other, making it easy to manage and find information  |
-| One to One          | ...                                                                                                         |
-| One to Many         | ...                                                                                                         |
-| Many to Many        | ...                                                                                                         |
-| Polymorphism        | ...                                                                                                         |
-| MVC                 | ...                                                                                                         |
-| ...                 | ...                                                                                                         |
+| Term                | Definition                                                                                                                      |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| BREAD               | Database operations to Browse, Read, Edit, Add and Delete data                                                                  |
+| CRUD                | More commonly used term over BREAD. Create (Add), Retrieve (Browse/Read), Update (Edit) and Delete (Delete)                     |
+| Relational Database | Organises data into tables that are connected to each other, making it easy to manage and find information                      |
+| One to One          | Each record in one table corresponds to exactly one record in another table                                                     |
+| One to Many         | Each record in one table corresponds to multiple records in another table                                                       |
+| Many to Many        | Multiple records in one table can relate to multiple records in another                                                         |
+| Polymorphism        | Many forms - when objects from different classes can be treated as in uniform way, like from a superclass, allowing flexibility |
+| MVC                 | Model View Controller - software design approach that separates application logic into model, controller and view               |
+| ...                 | ...                                                                                                                             |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -178,9 +178,9 @@ TODO: More details on use for use in developing basic application using this cod
 
 ## Contact
 
-Adrian Gould - Adrian.Gould@nmtafe.wa.edu.au
+Martina Ait - 20114816@tafe.wa.edu.au
 
-Project Link: https://github.com/AdyGCode/xxx-saas-vanilla-mvc-yyyy-sn
+Project Link: https://github.com/AITMAR-TAFE/ma-php-mvc-jokes-2025-s1
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
