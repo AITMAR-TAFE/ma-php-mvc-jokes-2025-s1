@@ -29,4 +29,16 @@ class StaticPageController
     }
 
 
+    /**
+     * Show the about page
+     *
+     * @return void
+     */
+    public function about()
+    {
+
+        loadView('about');
+    }
+
+
 }
