@@ -15,7 +15,7 @@
  *
  */
 
-namespace App\Controllers;
+namespace App\controllers;
 
 
 use Framework\Database;
