@@ -56,6 +56,16 @@ $router->get('/products/edit/{id}', 'ProductController@edit', ['auth']);
 $router->get('/products/search', 'ProductController@search');
 $router->get('/products/{id}', 'ProductController@show');
 
+/**
+ * Joke Feature Routes
+ */
+$router->get('/jokes', 'JokeController@browse'); // Browse jokes
+$router->get('/jokes/create', 'JokeController@create', ['auth']); // Create a new joke (requires authentication)
+$router->get('/jokes/edit/{id}', 'JokeController@edit', ['auth']); // Edit a joke (requires authentication)
+$router->get('/jokes/search', 'JokeController@search'); // Search jokes
+$router->get('/jokes/{id}', 'JokeController@show'); // Show a single joke
+
+
 $router->post('/products', 'ProductController@store', ['auth']);
 $router->put('/products/{id}', 'ProductController@update', ['auth']);
 $router->delete('/products/{id}', 'ProductController@destroy', ['auth']);

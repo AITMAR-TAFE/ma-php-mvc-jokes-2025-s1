@@ -17,7 +17,6 @@
 
 namespace App\controllers;
 
-
 use Framework\Database;
 
 class HomeController
@@ -37,7 +36,16 @@ class HomeController
      */
     public function index()
     {
-        loadView('home', []);
+        $lastSixQuery = 'SELECT * FROM jokes ORDER BY created_at DESC LIMIT 0,6';
+        $simpleRandomSixQuery = 'SELECT * FROM jokes ORDER BY RAND() LIMIT 0,6';
+
+        $joke = $this->db->query($simpleRandomSixQuery)
+            ->fetch();
+
+        loadView('home', ['joke' => $joke,]);
+
+
+
     }
 
     /*
@@ -47,21 +55,21 @@ class HomeController
      */
     public function dashboard()
     {
-        $lastSixQuery = 'SELECT * FROM products ORDER BY created_at DESC LIMIT 0,6';
-        $simpleRandomSixQuery = 'SELECT * FROM products ORDER BY RAND() LIMIT 0,6';
+        $lastSixQuery = 'SELECT * FROM jokes ORDER BY created_at DESC LIMIT 0,6';
+        $simpleRandomSixQuery = 'SELECT * FROM jokes ORDER BY RAND() LIMIT 0,6';
 
-        $products = $this->db->query($simpleRandomSixQuery)
+        $jokes = $this->db->query($simpleRandomSixQuery)
             ->fetchAll();
 
-        $productCount = $this->db->query('SELECT count(id) as total FROM products ')
+        $jokesCount = $this->db->query('SELECT count(id) as total FROM jokes ')
             ->fetch();
 
         $userCount = $this->db->query('SELECT count(id) as total FROM users')
             ->fetch();
 
         loadView('dashboard', [
-            'products' => $products,
-            'productCount' => $productCount,
+            'jokes' => $jokes,
+            'jokesCount' => $jokesCount,
             'userCount' => $userCount,
         ]);
     }
