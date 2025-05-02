@@ -36,4 +36,12 @@ class Authorisation
 
         return false;
     }
+
+    public static function requireLogin(): void
+    {
+        if (!Session::has('user')) {
+            redirect('/auth/login');
+            exit;
+        }
+    }
 }

@@ -28,14 +28,52 @@ class JokeController
      */
     public function browse(): void
     {
-        $sql = "SELECT * FROM ma_php_mvc_jokes_2025_s1.jokes";
+        Authorisation::requireLogin();
 
-        $stmt = $this->db->query($sql);
+        $search = $_GET['search'] ?? null;
+
+        if ($search) {
+            $sql = "SELECT jokes.*, categories.name AS category_name, users.nickname 
+                FROM jokes 
+                JOIN categories ON jokes.category_id = categories.id
+                JOIN users ON jokes.author_id = users.id
+                WHERE jokes.body LIKE :search";
+            // Bind the search parameter for SQL
+            $stmt = $this->db->query($sql, [':search' => '%' . $search . '%']);
+        } else {
+            $sql = "SELECT jokes.*, categories.name AS category_name, users.nickname 
+                FROM jokes 
+                JOIN categories ON jokes.category_id = categories.id
+                JOIN users ON jokes.author_id = users.id";
+            $stmt = $this->db->query($sql);
+        }
+
         $jokes = $stmt->fetchAll();
 
-        loadView('static/home', [
-            'jokes' => $jokes // Ensure jokes are passed
+        loadView('jokes/index', [
+            'jokes' => $jokes,
+            'search' => $search
         ]);
+    }
+
+    public function read(int $id): void
+    {
+        $sql = "SELECT jokes.*, categories.name AS category_name, users.name AS author 
+            FROM jokes 
+            JOIN categories ON jokes.category_id = categories.id 
+            JOIN users ON jokes.user_id = users.id 
+            WHERE jokes.id = :id";
+
+        $stmt = $this->db->query($sql, [':id' => $id]);
+        $joke = $stmt->fetch();
+
+        if (!$joke) {
+            http_response_code(404);
+            echo "Joke not found.";
+            return;
+        }
+
+        loadView('jokes/read', ['joke' => $joke]);
     }
 
 

@@ -42,7 +42,7 @@ class HomeController
         $joke = $this->db->query($simpleRandomSixQuery)
             ->fetch();
 
-        loadView('home', ['joke' => $joke,]);
+        loadView('home', ['joke' => $joke]);
 
 
 

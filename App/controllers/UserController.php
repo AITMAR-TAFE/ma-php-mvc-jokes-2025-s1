@@ -90,7 +90,7 @@ class UserController
         }
 
         if (!Validation::string($givenName, 2, 50)) {
-            $errors['name'] = 'Given name must be between 2 and 50 characters';
+            $errors['given_name'] = 'Given name must be between 2 and 50 characters';
         }
 
         if (!Validation::string($password, 6, 50)) {
@@ -139,10 +139,13 @@ class UserController
 
         // Create user account
         $params = [
-            'name' => $givenName,
+            'given_name' => $givenName,
+            'family_name' => $familyName,
+            'nickname' => $nickname,  // Add nickname
             'email' => $email,
             'city' => $city,
             'state' => $state,
+            'country' => $country,    // Add country
             'password' => password_hash($password, PASSWORD_DEFAULT)
         ];
 

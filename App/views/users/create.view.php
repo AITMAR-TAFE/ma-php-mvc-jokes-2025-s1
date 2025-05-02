@@ -30,11 +30,19 @@ loadPartial('navigation'); ?>
             <form method="POST" action="/auth/register">
 
                 <section class="mb-4">
-                    <label for="Name" class="mt-4 pb-1">Name:</label>
-                    <input type="text" id="Name"
-                           name="name" placeholder="Full Name"
+                    <label for="GivenName" class="mt-4 pb-1">Given Name:</label>
+                    <input type="text" id="GivenName"
+                           name="given_name" placeholder="Given Name"
                            class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
-                           value="<?= $user['name'] ?? '' ?>"/>
+                           value="<?= $user['given_name'] ?? '' ?>"/>
+                </section>
+
+                <section class="mb-4">
+                    <label for="FamilyName" class="mt-4 pb-1">Family Name:</label>
+                    <input type="text" id="FamilyName"
+                           name="family_name" placeholder="Family Name"
+                           class="w-full px-4 py-2 border border-b-zinc-300 rounded focus:outline-none"
+                           value="<?= $user['family_name'] ?? '' ?>"/>
                 </section>
 
                 <section class="mb-4">
