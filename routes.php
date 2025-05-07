@@ -60,10 +60,10 @@ $router->get('/products/{id}', 'ProductController@show');
  * Joke Feature Routes
  */
 $router->get('/jokes', 'JokeController@browse'); // Browse jokes
-$router->get('/jokes/create', 'JokeController@create', ['auth']); // Create a new joke (requires authentication)
+$router->get('/jokes/add', 'JokeController@add', ['auth']); // Create a new joke (requires authentication)
 $router->get('/jokes/edit/{id}', 'JokeController@edit', ['auth']); // Edit a joke (requires authentication)
 $router->get('/jokes/search', 'JokeController@search'); // Search jokes
-$router->get('/jokes/{id}', 'JokeController@show'); // Show a single joke
+$router->get('/jokes/{id}', 'JokeController@read'); // Show a single joke
 
 
 $router->post('/products', 'ProductController@store', ['auth']);

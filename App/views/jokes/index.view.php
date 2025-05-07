@@ -24,6 +24,7 @@ loadPartial('navigation');
     <article class="grid grid-cols-1">
         <section class="my-4 p-4 gap-8 justify-start">
             <h1>Jokes List</h1>
+            <a href="/jokes/add" class="btn btn-primary">Add Joke</a>
         </section>
         <section class="my-4 p-4 gap-8 justify-start">
             <!-- Search Form -->
@@ -47,7 +48,7 @@ loadPartial('navigation');
                     <?php foreach ($jokes as $joke): ?>
                         <tr>
                             <td class="border border-gray-300 px-4 py-2">
-                                <a href="/jokes/<?= $joke->id ?>" class="text-blue-500 hover:underline">
+                                <a href="/jokes/read<?= $joke->id ?>" class="text-blue-500 hover:underline">
                                     <?= htmlspecialchars($joke->title) ?>
                                 </a>
                             </td>

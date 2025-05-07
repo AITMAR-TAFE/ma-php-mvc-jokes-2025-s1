@@ -53,11 +53,11 @@ $authenticated = new Authorise();
             ?>
 
             <li>
-                <a href="/products"
+                <a href="/jokes"
                    class="pb-2 px-1 text-gray-400 hover:text-gray-300
                      border-0 border-b-2 hover:border-b-gray-500
                      transition ease-in-out duration-500">
-                    Products
+                    Jokes
                 </a>
             </li>
             <li>

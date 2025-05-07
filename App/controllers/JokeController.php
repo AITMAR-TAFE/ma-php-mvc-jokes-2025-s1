@@ -60,25 +60,40 @@ class JokeController
         ]);
     }
 
-    public function read(int $id): void
+    public function read($id): void
     {
-//        $sql = "SELECT jokes.*, categories.name AS category_name, users.name AS author
-//            FROM jokes
-//            JOIN categories ON jokes.category_id = categories.id
-//            JOIN users ON jokes.user_id = users.id
-//            WHERE jokes.id = :id";
-//
-//        $stmt = $this->db->query($sql, [':id' => $id]);
-//        $joke = $stmt->fetch();
-//
-//        if (!$joke) {
-//            http_response_code(404);
-//            echo "Joke not found.";
-//            return;
-//        }
-//
-//        loadView('jokes/read', ['joke' => $joke]);
+        Authorisation::requireLogin();
+
+        $id = (int)$id;
+
+        $query = "SELECT jokes.*, categories.name AS category_name, users.given_name, users.family_name
+              FROM jokes
+              JOIN categories ON jokes.category_id = categories.id
+              JOIN users ON jokes.author_id = users.id
+              WHERE jokes.id = :id";
+
+        $params = [
+            'id' => $id,
+        ];
+
+        $stmt = $this->db->query($query, $params);
+
+        $joke = $stmt->fetch();
+
+        if ($joke) {
+            loadView('jokes/read', [
+                'joke' => $joke,
+            ]);
+        } else {
+            loadView('error/not_found');
+        }
     }
 
+    public function add()
+    {
+        $categories = $this->db->query("SELECT * FROM categories")->fetchAll();
+
+        loadView('jokes/add', ['categories' => $categories]);
+    }
 
 }
