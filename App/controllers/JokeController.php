@@ -89,11 +89,93 @@ class JokeController
         }
     }
 
-    public function add()
+    public function add(): void
     {
         $categories = $this->db->query("SELECT * FROM categories")->fetchAll();
 
         loadView('jokes/add', ['categories' => $categories]);
     }
+
+    /**
+     * Store data in database
+     *
+     * @return void
+     * @throws \Exception
+     */
+    #[NoReturn] public function store()
+    {
+        $allowedFields = ['title','category_id','author_id','tags','body'];
+
+        $newJokeData = array_intersect_key($_POST, array_flip($allowedFields));
+
+        $newJokeData['author_id'] = Session::get('user')['id'];
+
+        $newJokeData = array_map('sanitize', $newJokeData);
+
+        $requiredFields = ['title','tags','body'];
+
+        $errors = [];
+
+        foreach ($requiredFields as $field) {
+            if (empty($newJokeData[$field]) || !Validation::string($newJokeData[$field])) {
+                $errors[$field] = ucfirst($field) . ' is required';
+            }
+        }
+
+        if (empty($newJokeData['category_id']) || !is_numeric($newJokeData['category_id'])) {
+            $errors['category_id'] = 'Category is required and must be valid.';
+        }
+
+        if (!empty($errors)) {
+            // Reload view with errors
+            loadView('jokes/add', [
+                'errors' => $errors,
+                'jokes' => $newJokeData
+            ]);
+        }
+
+
+        // accept the Markdown from the form and store as HTML
+        if (isset($newJokeData['body'])) {
+
+            $description = $newJokeData['body'] ?? '';
+            $markdown = htmlToMarkdown($description);
+            $newJokeData['body'] = $markdown;
+        }
+
+        // Save the submitted data
+        $fields = [];
+
+        foreach ($newJokeData as $field => $value) {
+            $fields[] = $field;
+        }
+
+        $fields = implode(', ', $fields);
+
+        $values = [];
+
+        foreach ($newJokeData as $field => $value) {
+            // Convert empty strings to null
+            if ($value === '') {
+                $newJokeData[$field] = null;
+            }
+
+            $values[] = ':' . $field;
+        }
+
+        $values = implode(', ', $values);
+
+        $insertQuery = "INSERT INTO jokes ({$fields}) VALUES ({$values})";
+
+        $this->db->query($insertQuery, $newJokeData);
+
+        Session::setFlashMessage('success_message', 'Joke created successfully');
+
+        loadView('jokes/add', [
+            'success_message' => Session::get('success_message'),
+            'jokes' => $newJokeData
+        ]);
+    }
+
 
 }

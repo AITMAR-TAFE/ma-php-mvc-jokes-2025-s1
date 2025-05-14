@@ -64,6 +64,7 @@ $router->get('/jokes/add', 'JokeController@add', ['auth']); // Create a new joke
 $router->get('/jokes/edit/{id}', 'JokeController@edit', ['auth']); // Edit a joke (requires authentication)
 $router->get('/jokes/search', 'JokeController@search'); // Search jokes
 $router->get('/jokes/{id}', 'JokeController@read'); // Show a single joke
+$router->post('/jokes', 'JokeController@store', ['auth']); //Store joke "POST"
 
 
 $router->post('/products', 'ProductController@store', ['auth']);

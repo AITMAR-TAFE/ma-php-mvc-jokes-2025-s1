@@ -43,14 +43,14 @@ loadPartial('navigation');
                     </h2>
 
                     <div class="mb-4">
-                        <label for="Title">Title:</label>
-                        <input id="Title" type="text" name="title" placeholder="Joke Title"
+                        <label for="title">Title:</label>
+                        <input id="title" type="text" name="title" placeholder="Joke Title"
                                class="w-full px-4 py-2 border rounded focus:outline-none"
                                value="<?= $jokes['title'] ?? '' ?>"/>
                     </div>
                     <div class="mb-4">
-                        <label for="Category">Category:</label>
-                        <select id="Category" name="category_id" class="w-full px-4 py-2 border rounded focus:outline-none">
+                        <label for="category_id">Category:</label>
+                        <select id="category_id" name="category_id" class="w-full px-4 py-2 border rounded focus:outline-none">
                             <?php if (!empty($categories)): ?>
                                 <?php foreach ($categories as $category): ?>
                                     <option value="<?= htmlspecialchars($category->id) ?>">
@@ -63,20 +63,20 @@ loadPartial('navigation');
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label for="Tag">Tag:</label>
-                        <input id="Tag" type="text" name="tag" placeholder="Tags"
+                        <label for="tags">Tag:</label>
+                        <input id="tags" type="text" name="tags" placeholder="Tags"
                                class="w-full px-4 py-2 border rounded focus:outline-none"
                                value="<?= $jokes['tags'] ?? '' ?>"/>
                     </div>
+<!--                    <div class="mb-4">-->
+<!--                        <label for="author_id">Author:</label>-->
+<!--                        <input id="author_id" type="text" name="author_id" placeholder="Author ID"-->
+<!--                               class="w-full px-4 py-2 border rounded focus:outline-none"-->
+<!--                               value="--><?php //= $jokes['author_id'] ?? '' ?><!--"/>-->
+<!--                    </div>-->
                     <div class="mb-4">
-                        <label for="Author">Author:</label>
-                        <input id="Author" type="text" name="author" placeholder="Author ID"
-                               class="w-full px-4 py-2 border rounded focus:outline-none"
-                               value="<?= $jokes['author_id'] ?? '' ?>"/>
-                    </div>
-                    <div class="mb-4">
-                        <label for="Description">Content:</label>
-                        <textarea id="content" name="content" placeholder="Joke Content"
+                        <label for="body">Content:</label>
+                        <textarea id="body" name="body" placeholder="Joke Content"
                                   class="w-full px-4 py-2 border rounded focus:outline-none"
                         ><?= $jokes['body'] ?? '' ?></textarea>
                     </div>
@@ -89,7 +89,7 @@ loadPartial('navigation');
                             <span>Save</span>
                         </button>
 
-                        <a href="/products"
+                        <a href="/jokes"
                            class="text-center w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2
                    rounded focus:outline-none flex justify-center">
                             <i class="fa fa-cancel inline-block mr-4"></i>
