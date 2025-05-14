@@ -179,6 +179,107 @@ class JokeController
 
     }
 
+    public function edit(array $params): void
+    {
+        $id = $params['id'] ?? '';
+        $userId = Session::get('user')['id'];
+
+        $params = ['id' => $id];
+        $joke = $this->db->query('SELECT * FROM jokes WHERE id = :id', $params)->fetch();
+
+        if (!$joke) {
+            ErrorController::notFound('Joke not found');
+            return;
+        }
+        $categories = $this->db->query("SELECT * FROM categories")->fetchAll();
+
+        if ($joke->author_id !== $userId) {
+            Session::setFlashMessage('error_message', 'You are not authorized to update this joke');
+            redirect('/jokes/');
+        }
+
+        $converter = new HtmlConverter();
+        $joke->body = $converter->convert($joke->body ?? '');
+
+        loadView('jokes/edit', [
+            'joke' => $joke,
+            'categories'=>$categories
+        ]);
+    }
+
+    /**
+     * Update a joke
+     *
+     * @param array $params
+     * @return null
+     * @throws \Exception
+     */
+    #[NoReturn] public function update(array $params): null
+    {
+        $id = $params['id'] ?? '';
+
+        $params = [
+            'id' => $id
+        ];
+
+        $joke = $this->db->query('SELECT * FROM jokes WHERE id = :id', $params)->fetch();
+
+
+        $allowedFields = ['title', 'body', 'tags'];
+
+        $updateValues = array_intersect_key($_POST, array_flip($allowedFields)) ?? [];
+
+        $updateValues = array_map('sanitize', $updateValues);
+
+        $requiredFields = ['title', 'body', 'tags'];
+
+        $errors = [];
+
+        foreach ($requiredFields as $field) {
+            if (empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
+                $errors[$field] = ucfirst($field) . ' is required';
+            }
+        }
+
+        if (!empty($errors)) {
+            loadView('jokes/edit', [
+                'joke' => $joke,
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        if (isset($updateValues['body'])) {
+            $body = $updateValues['body'] ?? '';
+            $markdown = htmlToMarkdown($body);
+            $updateValues['body'] = $markdown;
+        }
+
+        // Submit to database
+        $updateFields = [];
+
+        foreach (array_keys($updateValues) as $field) {
+            $updateFields[] = "{$field} = :{$field}";
+        }
+
+        $updateFields = implode(', ', $updateFields);
+
+        $updateQuery = "UPDATE jokes SET $updateFields WHERE id = :id";
+
+        $updateValues['id'] = $id;
+        if (isset($updateValues['tags'])) {
+            $updateValues['tags'] = sanitize($updateValues['tags']);
+        }
+
+        $this->db->query($updateQuery, $updateValues);
+
+        // Set flash message
+        Session::setFlashMessage('success_message', 'joke updated');
+
+        redirect('/jokes/' . $id);
+
+    }
+
     public function delete($params)
     {
         $id = $params['id'];
@@ -201,19 +302,16 @@ class JokeController
             $deleteStmt = $this->db->query($deleteQuery, $deleteParams);
 
             if ($deleteStmt->rowCount() > 0) {
-                // Set a success flash message if deletion was successful
                 Session::setFlashMessage('success_message', 'Joke deleted successfully.');
             } else {
-                // Set an error flash message if joke was not found or deletion failed
                 Session::setFlashMessage('error_message', 'Joke not found.');
             }
         } else {
-            // If the joke does not exist or the user is not the author
             Session::setFlashMessage('error_message', 'You are not authorized to delete this joke.');
         }
-        var_dump(Session::get('error_message'));
-        // Redirect to the jokes list or another relevant page
         redirect('/jokes');
     }
+    
+    
 
 }

@@ -66,6 +66,7 @@ $router->get('/jokes/search', 'JokeController@search'); // Search jokes
 $router->get('/jokes/{id}', 'JokeController@read'); // Show a single joke
 $router->post('/jokes', 'JokeController@store', ['auth']); //Store joke "POST"
 $router->post('/jokes/delete/{id}', 'JokeController@delete', ['auth']);
+$router->post('/jokes/edit/{id}', 'JokeController@update', ['auth']);
 
 
 $router->post('/products', 'ProductController@store', ['auth']);

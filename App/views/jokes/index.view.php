@@ -53,11 +53,7 @@ loadPartial('navigation');
                 <?php if (isset($jokes) && count($jokes) > 0): ?>
                     <?php foreach ($jokes as $joke): ?>
                         <tr>
-                            <td class="border border-gray-300 px-4 py-2">
-                                <a href="/jokes/read<?= $joke->id ?>" class="text-blue-500 hover:underline">
-                                    <?= htmlspecialchars($joke->title) ?>
-                                </a>
-                            </td>
+                            <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($joke->title) ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($joke->category_name) ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($joke->tags ?? 'None') ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($joke->nickname) ?></td>
@@ -66,6 +62,7 @@ loadPartial('navigation');
                                 <form action="/jokes/delete/<?= $joke->id ?>" method="POST" class="inline-block">
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
+                                <a href="/jokes/read<?= $joke->id ?>" class="btn btn-secondary">Read</a>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
