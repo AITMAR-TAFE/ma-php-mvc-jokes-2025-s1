@@ -175,7 +175,45 @@ class JokeController
             'success_message' => Session::get('success_message'),
             'jokes' => $newJokeData
         ]);
+
+
     }
 
+    public function delete($params)
+    {
+        $id = $params['id'];
+        $userId = Session::get('user')['id'];
+
+        $query = "SELECT author_id FROM jokes WHERE id = :id";
+        $params = [
+            'id' => $id
+        ];
+
+        $stmt = $this->db->query($query, $params);
+        $joke = $stmt->fetch();
+
+        if ($joke && $joke->author_id == $userId) {
+            $deleteQuery = "DELETE FROM jokes WHERE id = :id";
+            $deleteParams = [
+                'id' => $id
+            ];
+
+            $deleteStmt = $this->db->query($deleteQuery, $deleteParams);
+
+            if ($deleteStmt->rowCount() > 0) {
+                // Set a success flash message if deletion was successful
+                Session::setFlashMessage('success_message', 'Joke deleted successfully.');
+            } else {
+                // Set an error flash message if joke was not found or deletion failed
+                Session::setFlashMessage('error_message', 'Joke not found.');
+            }
+        } else {
+            // If the joke does not exist or the user is not the author
+            Session::setFlashMessage('error_message', 'You are not authorized to delete this joke.');
+        }
+        var_dump(Session::get('error_message'));
+        // Redirect to the jokes list or another relevant page
+        redirect('/jokes');
+    }
 
 }

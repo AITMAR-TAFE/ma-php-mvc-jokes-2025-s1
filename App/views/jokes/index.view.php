@@ -25,6 +25,11 @@ loadPartial('navigation');
         <section class="my-4 p-4 gap-8 justify-start">
             <h1>Jokes List</h1>
             <a href="/jokes/add" class="btn btn-primary">Add Joke</a>
+            <?= loadPartial('message') ?>
+
+            <?= loadPartial('errors', [
+                'errors' => $errors ?? []
+            ]) ?>
         </section>
         <section class="my-4 p-4 gap-8 justify-start">
             <!-- Search Form -->
@@ -41,6 +46,7 @@ loadPartial('navigation');
                     <th class="border border-gray-300 px-4 py-2">Category</th>
                     <th class="border border-gray-300 px-4 py-2">Tags</th>
                     <th class="border border-gray-300 px-4 py-2">Author</th>
+                    <th class="border border-gray-300 px-4 py-2">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,6 +61,11 @@ loadPartial('navigation');
                             <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($joke->category_name) ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($joke->tags ?? 'None') ?></td>
                             <td class="border border-gray-300 px-4 py-2"><?= htmlspecialchars($joke->nickname) ?></td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <a href="/jokes/edit/<?= $joke->id ?>" class="btn btn-secondary">Edit</a>
+                                <form action="/jokes/delete/<?= $joke->id ?>" method="POST" class="inline-block">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
