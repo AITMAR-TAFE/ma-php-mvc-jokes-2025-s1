@@ -40,14 +40,14 @@ $authenticated = new Authorise();
             <?php
             if ($authenticated->isAuthenticated()) {
                 ?>
-                <li>
-                    <a href="/dashboard"
-                       class="pb-2 px-1 text-gray-400 hover:text-gray-300
-                     border-0 border-b-2 hover:border-b-gray-500
-                     transition ease-in-out duration-500">
-                        Dashboard
-                    </a>
-                </li>
+<!--                <li>-->
+<!--                    <a href="/dashboard"-->
+<!--                       class="pb-2 px-1 text-gray-400 hover:text-gray-300-->
+<!--                     border-0 border-b-2 hover:border-b-gray-500-->
+<!--                     transition ease-in-out duration-500">-->
+<!--                        Dashboard-->
+<!--                    </a>-->
+<!--                </li>-->
                 <?php
             }
             ?>
@@ -68,22 +68,22 @@ $authenticated = new Authorise();
                     About
                 </a>
             </li>
-            <li>
-                <a href="#"
-                   class="pb-2 px-1 text-gray-400 hover:text-gray-300
-                     border-0 border-b-2 hover:border-b-gray-500
-                     transition ease-in-out duration-500">
-                    Link 1
-                </a>
-            </li>
-            <li>
-                <a href="#"
-                   class="pb-2 px-1 text-gray-400 hover:text-gray-300
-                     border-0 border-b-2 hover:border-b-gray-500
-                     transition ease-in-out duration-500">
-                    Link 2
-                </a>
-            </li>
+<!--            <li>-->
+<!--                <a href="#"-->
+<!--                   class="pb-2 px-1 text-gray-400 hover:text-gray-300-->
+<!--                     border-0 border-b-2 hover:border-b-gray-500-->
+<!--                     transition ease-in-out duration-500">-->
+<!--                    Link 1-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#"-->
+<!--                   class="pb-2 px-1 text-gray-400 hover:text-gray-300-->
+<!--                     border-0 border-b-2 hover:border-b-gray-500-->
+<!--                     transition ease-in-out duration-500">-->
+<!--                    Link 2-->
+<!--                </a>-->
+<!--            </li>-->
         </ul>
 
         <ul class="flex flex-row gap-4">

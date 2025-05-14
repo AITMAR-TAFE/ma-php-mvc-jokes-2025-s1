@@ -39,6 +39,7 @@ class HomeController
         $lastSixQuery = 'SELECT * FROM jokes ORDER BY created_at DESC LIMIT 0,6';
         $simpleRandomSixQuery = 'SELECT * FROM jokes ORDER BY RAND() LIMIT 0,6';
 
+
         $joke = $this->db->query($simpleRandomSixQuery)
             ->fetch();
 
