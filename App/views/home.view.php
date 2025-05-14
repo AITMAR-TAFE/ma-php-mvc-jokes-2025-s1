@@ -22,19 +22,21 @@ loadPartial('navigation');
         <!-- Random Joke Section -->
         <section class="my-4 p-4 gap-8 justify-start">
             <p class="text-3xl font-light">Welcome to the Home Page</p>
-            <p>Here's a joke for you: <strong><?= htmlspecialchars($joke -> body ) ?></strong></p>
+            <p>Here's a joke for you: <strong><?= htmlspecialchars($randomJoke -> body ) ?></strong></p>
             <button onclick="location.reload()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">New Joke</button>
         </section>
 
-        <!-- Browse Jokes Section -->
-        <section class="my-4 p-4 gap-8 justify-start">
-            <h2 class="text-2xl font-semibold">Browse Jokes</h2>
-            <!-- Search Form -->
-            <form method="get" action="" class="my-4">
-                <input type="text" name="search" placeholder="Search jokes..." value="<?= htmlspecialchars($data['search'] ?? '') ?>" class="px-4 py-2 border rounded">
-                <button type="submit" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded">Search</button>
-            </form>
-        </section>
+        <!-- Additional Info Section (Displayed to authenticated users) -->
+
+            <section class="my-4 p-4 gap-8 justify-start">
+                <h2 class="text-xl font-semibold">User Info</h2>
+                <p>Welcome, <?= htmlspecialchars($user ->nickname) ?>!</p>
+                <p>Total Jokes: <?= htmlspecialchars($data['jokeCount']) ?></p>
+                <p>Total Users: <?= htmlspecialchars($data['userCount']) ?></p>
+            </section>
+
+
+
 
     </article>
 </main>
