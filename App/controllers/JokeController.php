@@ -1,4 +1,22 @@
 <?php
+/**
+ * Joke Controller
+ *
+ * This controller provides functionality for managing jokes, including:
+ * - Browsing a list of jokes
+ * - Reading a specific joke
+ * - Adding new jokes
+ * - Editing existing jokes
+ * - Deleting jokes
+ *
+ * Filename:        JokeController.php
+ * Location:        App/Controllers
+ * Project:         ma-php-mvc-jokes-2025-s1
+ * Date Created:    10/05/2025
+ *
+ * Author:          Martina Ait <20114816@tafe.wa.edu.au>
+ *
+ */
 
 namespace App\controllers;
 
@@ -25,6 +43,8 @@ class JokeController
     /**
      * Browse a list of jokes
      *
+     * @return void
+     * @throws \Exception
      */
     public function browse(): void
     {
@@ -59,7 +79,14 @@ class JokeController
             'search' => $search
         ]);
     }
-
+    /**
+     * Read a specific joke
+     *
+     *
+     * @param int $id The ID of the joke to fetch.
+     * @return void
+     * @throws \Exception
+     */
     public function read($id): void
     {
         Authorisation::requireLogin();
@@ -88,7 +115,12 @@ class JokeController
             loadView('error/not_found');
         }
     }
-
+    /**
+     * Add a new joke
+     *
+     * @return void
+     * @throws \Exception
+     */
     public function add(): void
     {
         $categories = $this->db->query("SELECT * FROM categories")->fetchAll();
@@ -102,7 +134,7 @@ class JokeController
      * @return void
      * @throws \Exception
      */
-    #[NoReturn] public function store()
+    #[NoReturn] public function store() :void
     {
         $allowedFields = ['title','category_id','author_id','tags','body'];
 
@@ -179,6 +211,13 @@ class JokeController
 
     }
 
+    /**
+     * Edit an existing joke
+     *
+     * @param array $params Parameters including the joke ID.
+     * @return void
+     * @throws \Exception
+     */
     public function edit(array $params): void
     {
         $id = $params['id'] ?? '';
@@ -280,7 +319,14 @@ class JokeController
 
     }
 
-    public function delete($params)
+    /**
+     * Delete a joke
+     *
+     * @param array $params Parameters including the joke ID.
+     * @return void
+     * @throws \Exception
+     */
+    public function delete($params):void
     {
         $id = $params['id'];
         $userId = Session::get('user')['id'];
@@ -312,6 +358,4 @@ class JokeController
         redirect('/jokes');
     }
     
-    
-
 }

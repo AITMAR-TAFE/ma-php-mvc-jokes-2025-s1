@@ -50,7 +50,7 @@ class UserController
      *
      * @return void
      */
-    public function login()
+    public function login() :void
     {
         loadView('users/login');
     }
@@ -60,7 +60,7 @@ class UserController
      *
      * @return void
      */
-    public function create()
+    public function create() :void
     {
         loadView('users/create');
     }
@@ -69,8 +69,9 @@ class UserController
      * Store user in database
      *
      * @return void
+     * @throws \Exception
      */
-    public function store()
+    public function store() :void
     {
         $givenName = $_POST['given_name'] ?? null;
         $familyName = $_POST['family_name'] ?? null;  // Family name is optional
@@ -172,7 +173,7 @@ class UserController
      *
      * @return void
      */
-    public function logout()
+    public function logout() :void
     {
         Session::clearAll();
 
@@ -187,8 +188,9 @@ class UserController
      * Authenticate a user with email and password
      *
      * @return void
+     * @throws \Exception
      */
-    public function authenticate()
+    public function authenticate() :void
     {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -251,7 +253,11 @@ class UserController
         redirect('/');
     }
 
-    public function update()
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    public function update() :void
     {
         // Check if the user is authenticated
         $userId = Session::get('user')['id'] ?? null;
