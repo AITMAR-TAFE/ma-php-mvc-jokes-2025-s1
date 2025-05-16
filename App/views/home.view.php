@@ -22,7 +22,7 @@ loadPartial('navigation');
         <!-- Random Joke Section -->
         <section class="my-4 p-4 gap-8 justify-start">
             <p class="text-3xl font-light">Welcome to the Home Page</p>
-            <p>Here's a joke for you: <strong><?= htmlspecialchars($randomJoke -> body ) ?></strong></p>
+            <p>Here's a joke for you: <strong><?= htmlspecialchars_decode($randomJoke->body) ?></strong></p>
             <button onclick="location.reload()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">New Joke</button>
         </section>
 
@@ -30,9 +30,11 @@ loadPartial('navigation');
 
             <section class="my-4 p-4 gap-8 justify-start">
                 <h2 class="text-xl font-semibold">User Info</h2>
-                <p>Welcome, <?= htmlspecialchars($user ->nickname) ?>!</p>
-                <p>Total Jokes: <?= htmlspecialchars($data['jokeCount']) ?></p>
-                <p>Total Users: <?= htmlspecialchars($data['userCount']) ?></p>
+                <p>Welcome, <?= htmlspecialchars($userNickname) ?>!</p>
+                <pre>
+</pre>
+                <p>Total Jokes: <?= htmlspecialchars($jokeCount) ?></p>
+                <p>Total Users: <?= htmlspecialchars($userCount) ?></p>
             </section>
 
 

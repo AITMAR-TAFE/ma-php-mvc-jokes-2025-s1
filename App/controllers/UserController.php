@@ -182,6 +182,7 @@ class UserController
         redirect('/');
     }
 
+
     /**
      * Authenticate a user with email and password
      *

@@ -31,14 +31,12 @@ loadPartial('navigation');
                 <?php if (isset($joke)): ?>
                     <p><strong>Title:</strong> <?= htmlspecialchars($joke->title) ?></p>
                     <p><strong>Category:</strong> <?= htmlspecialchars($joke->category_name) ?></p>
-                    <p><strong>Author's Full
-                            Name:</strong> <?= htmlspecialchars($joke->given_name) . ' ' . htmlspecialchars($joke->family_name) ?>
+                    <p><strong>Author's Full Name:</strong>
+                        <?= htmlspecialchars($joke->given_name) . ' ' . htmlspecialchars($joke->family_name) ?>
                     </p>
-
                     <p><strong>Tags:</strong> <?= htmlspecialchars($joke->tags ?? 'None') ?></p>
-
                     <p><strong>Content:</strong></p>
-                    <p class="mt-4"><?= htmlspecialchars($joke->body) ?></p>
+                    <div class="mt-4"><?= htmlspecialchars_decode($joke->body) ?></div>
                 <?php else: ?>
                     <p>Joke not found.</p>
                 <?php endif; ?>
