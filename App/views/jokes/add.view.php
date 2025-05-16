@@ -1,17 +1,13 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * Add Joke View
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * Filename:        add.view.php
+ * Location:        /App/views/jokes
+ * Project:         ma-php-mvc-jokes-2025-s1
+ * Date Created:    02/04/2025
  *
- * Filename:        index.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         SaaS-Vanilla-MVC
- * Date Created:    20/08/2024
- *
- * Author:          Adrian Gould <Adrian.Gould@nmtafe.wa.edu.au>
+ * Author:          Martina Ait <20114816@tafe.wa.edu.au>
  *
  */
 

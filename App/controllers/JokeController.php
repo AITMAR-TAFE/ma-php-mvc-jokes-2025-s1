@@ -357,5 +357,5 @@ class JokeController
         }
         redirect('/jokes');
     }
-    
+
 }

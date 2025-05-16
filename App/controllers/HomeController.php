@@ -1,17 +1,14 @@
 <?php
 /**
- * FILE TITLE GOES HERE
+ * Home Controller
  *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
  *
  * Filename:        HomeController.php
  * Location:
- * Project:         SaaS-Vanilla-MVC
- * Date Created:    20/08/2024
+ * Project:         ma-php-mvc-jokes-2025-s1
+ * Date Created:    10/05/2025
  *
- * Author:          Adrian Gould <Adrian.Gould@nmtafe.wa.edu.au>
+ * Author:          Martina Ait <20114816@tafe.wa.edu.au>
  *
  */
 
@@ -45,10 +42,7 @@ class HomeController
         $userCount = $this->db->query('SELECT count(id) as total FROM users')
             ->fetch();
 
-        $userId = $_SESSION['user']['id'] ?? null;
         $userNickname = $_SESSION['user']['nickname'] ?? null;
-        $userId = (int) $userId;
-        var_dump($userId);
 
         loadView('home', [
             'randomJoke' => $randomJoke,
@@ -56,16 +50,6 @@ class HomeController
             'jokeCount' => $jokesCount ->total,
             'userCount' => $userCount->total
         ]);
-    }
-
-    /*
-     * Show the latest products
-     *
-     * @return void
-     */
-    public function dashboard()
-    {
-
     }
 
 

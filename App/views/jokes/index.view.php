@@ -1,17 +1,13 @@
 <?php
 /**
- * FILE TITLE GOES HERE
- *
- * DESCRIPTION OF THE PURPOSE AND USE OF THE CODE
- * MAY BE MORE THAN ONE LINE LONG
- * KEEP LINE LENGTH TO NO MORE THAN 96 CHARACTERS
+ * Index Page View
  *
  * Filename:        index.view.php
- * Location:        ${FILE_LOCATION}
- * Project:         SaaS-Vanilla-MVC
- * Date Created:    20/08/2024
+ * Location:        /App/views/jokes
+ * Project:         ma-php-mvc-jokes-2025-s1
+ * Date Created:    02/04/2025
  *
- * Author:          Adrian Gould <Adrian.Gould@nmtafe.wa.edu.au>
+ * Author:          Martina Ait <20114816@tafe.wa.edu.au>
  *
  */
 
