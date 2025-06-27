@@ -1,6 +1,6 @@
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 document.addEventListener('DOMContentLoaded', () => {
-    const messageEditor = document.querySelector('#Description');
+    const messageEditor = document.querySelector('#body');
 
     if (messageEditor) {
 

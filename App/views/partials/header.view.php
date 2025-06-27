@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>XXX Simple MVC Demo</title>
+    <title>MA Simple MVC Demo</title>
 
     <!-- During DEVELOPMENT the src/source.css file is used -->
     <link rel="stylesheet" href="/src/source.css">

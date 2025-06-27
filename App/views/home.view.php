@@ -28,17 +28,14 @@ loadPartial('navigation');
 
         <!-- Additional Info Section (Displayed to authenticated users) -->
 
+        <?php if (!empty($userNickname)): ?>
             <section class="my-4 p-4 gap-8 justify-start">
                 <h2 class="text-xl font-semibold">User Info</h2>
                 <p>Welcome, <?= htmlspecialchars($userNickname) ?>!</p>
-                <pre>
-</pre>
                 <p>Total Jokes: <?= htmlspecialchars($jokeCount) ?></p>
                 <p>Total Users: <?= htmlspecialchars($userCount) ?></p>
             </section>
-
-
-
+        <?php endif; ?>
 
     </article>
 </main>

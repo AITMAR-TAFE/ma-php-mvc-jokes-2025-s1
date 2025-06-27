@@ -16,8 +16,8 @@ loadPartial('navigation');
 
 
 ?>
-    <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js"></script>
-    <script src="/assets/js/editor.js"></script>
+<!--    <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js"></script>-->
+<!--    <script src="/public/assets/js/editor.js"></script>-->
 
     <main class="container mx-auto bg-zinc-50 py-8 px-4 shadow shadow-black/25 rounded-b-lg flex flex-col flex-grow">
         <article>
@@ -53,8 +53,8 @@ loadPartial('navigation');
 
                     <div class="mb-4">
                         <label for="body">Content:</label>
-                        <textarea id="body" name="body" placeholder="Joke Content"
-                                  class="w-full px-4 py-2 border rounded focus:outline-none"><?= htmlspecialchars($joke->body) ?? '' ?></textarea>
+                        <textarea id="body" name="body" type="text" placeholder="Joke Content"
+                                  class="w-full px-4 py-2 border rounded focus:outline-none"><?= htmlspecialchars( $joke->body) ?? '' ?></textarea>
                     </div>
 
                     <div class="grid grid-cols-4 gap-8">

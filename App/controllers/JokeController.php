@@ -55,8 +55,8 @@ class JokeController
         if ($search) {
             $query = "SELECT jokes.*, categories.name AS category_name, users.nickname 
                   FROM jokes 
-                  JOIN categories ON jokes.category_id = categories.id
-                  JOIN users ON jokes.author_id = users.id
+                  LEFT JOIN categories ON jokes.category_id = categories.id
+                  LEFT JOIN users ON jokes.author_id = users.id
                   WHERE jokes.body LIKE :search";
 
             $params = [
@@ -67,8 +67,8 @@ class JokeController
         } else {
             $sql = "SELECT jokes.*, categories.name AS category_name, users.nickname 
                 FROM jokes 
-                JOIN categories ON jokes.category_id = categories.id
-                JOIN users ON jokes.author_id = users.id";
+                LEFT JOIN categories ON jokes.category_id = categories.id
+                LEFT JOIN users ON jokes.author_id = users.id";
             $stmt = $this->db->query($sql);
         }
 
@@ -232,7 +232,7 @@ class JokeController
         }
         $categories = $this->db->query("SELECT * FROM categories")->fetchAll();
 
-        if ($joke->author_id !== $userId) {
+        if ((int)$joke->author_id !== $userId) {
             Session::setFlashMessage('error_message', 'You are not authorized to update this joke');
             redirect('/jokes/');
         }

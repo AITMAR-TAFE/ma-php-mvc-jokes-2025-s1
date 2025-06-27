@@ -261,13 +261,13 @@ VALUES (20, 'Adrian', 'Gould','Ady', 'adrian@example.com',
         'Perth', 'WA', 'Australia', '2024-08-10 16:11:43',null);
 
 INSERT INTO `MA_Php_MVC_jokes_2025_S1`.`users`
-VALUES (100, 'John', 'Doe','JD', 'user1@example.com',
+VALUES (103, 'John', 'Doe','JD', 'user1@example.com',
         '$2y$10$4Ae3n2iQ0MwXMNz0UEmNne2PaNyfYsBFYb97nayHWTDCwpnuPi6f.',
         'Bunbury', 'WA', 'Australia', '2024-08-15 13:04:21', null),
-       (101, 'Jane', 'Doe','JO', 'user2@example.com',
+       (104, 'Jane', 'Doe','JO', 'user2@example.com',
         '$2y$10$4Ae3n2iQ0MwXMNz0UEmNne2PaNyfYsBFYb97nayHWTDCwpnuPi6f.',
         'Melbourne', 'VIC', 'Australia', '2024-08-20 13:17:21', null),
-       (102, 'Steve', 'Smith','SS', 'user3@example.com',
+       (105, 'Steve', 'Smith','SS', 'user3@example.com',
         '$2y$10$4Ae3n2iQ0MwXMNz0UEmNne2PaNyfYsBFYb97nayHWTDCwpnuPi6f.',
         'Adelaide', 'SA', 'Australia', '2024-08-20 17:59:13', null);
 -- ====================================> END SECTION <=========================================
@@ -360,7 +360,7 @@ INSERT INTO `ma_php_mvc_jokes_2025_s1`.`jokes`(`id`, `title`, `body`, `category_
                                                 `author_id`, `created_at`, `updated_at`)
 VALUES (1, 'Skeleton Fight',
         '&lt;p&gt;Why don\'t skeletons fight each other?&lt;/p&gt;&lt;p&gt;They don\'t have the guts.&lt;/p&gt;',
-        7, 'spooky,funny', 1, now(), null),
+        7, 'spooky,funny', 10, now(), null),
        (2, 'Parallel Lines',
         '&lt;p&gt;Parallel lines have so much in common.&lt;/p&gt;&lt;p&gt;It\'s a shame they\'ll never meet.&lt;/p&gt;',
         9, 'geometry,puns', 105, now(), null),
